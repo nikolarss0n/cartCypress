@@ -12,20 +12,17 @@ class CartPageObj {
     }
 
     addToCart(productName: string, productSize: string, productColor: string) {
-        let productPrize: any;
         const logProductDetails = Cypress.log({
             displayName: `📦Product Details: ${productName} - ${productSize} - ${productColor}`,
             autoEnd: false
         })
-        // Choose item
-        clothesCategoryPage.chooseItem(productName)
-        
+       
         // Assert correct item is displayed
         productDetailPage.productTitle().should('contain', productName)
 
         // Product Prize
-        productDetailPage.productPrize().then((amount: any) => {
-            cy.log(`💵 Product prize: ${amount}`)
+        productDetailPage.productPrice().then((amount: any) => {
+            cy.log(`💵 Product price: ${amount}`)
         })
 
         // Select "Medium Brown" color
